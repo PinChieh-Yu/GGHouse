@@ -13,7 +13,8 @@
     Barrel,
     Window,
     Trashcan,
-    Faucet
+    Faucet,
+    Sauce
 }
 
 public enum ObjectProperty

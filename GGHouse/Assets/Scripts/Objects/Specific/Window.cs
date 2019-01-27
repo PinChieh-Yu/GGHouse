@@ -20,12 +20,12 @@ public class Window : MonoBehaviour, ISwitch
         {
             isOpen = true;
             anim.SetTrigger("Switch");
+            GameManager.instance.FinishTask();
         }
         else
         {
             isOpen = false;
             anim.SetTrigger("Switch");
         }
-
     }
 }

@@ -17,6 +17,7 @@ public class Floor : MonoBehaviour
             if ((targetObject.transform.position - transform.position).magnitude <= acceptRange)
             {
                 completed = true;
+                targetObject.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(transform.position.y * -10) - 5;
                 GameManager.instance.FinishTask();
             }
         }

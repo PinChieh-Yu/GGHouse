@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sink : MonoBehaviour
+public class Sauce : MonoBehaviour
 {
     private bool isInstalled;
     private Animator animator;
-    public Sprite faucet;
-
-    public GameObject FacuetWater;
+    //private Animator anim_Water;
+    public Sprite completeSauce;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +21,10 @@ public class Sink : MonoBehaviour
     {
         if (!isInstalled)
         {
-            GetComponent<SpriteRenderer>().sprite = faucet;
+            GetComponent<SpriteRenderer>().sprite = completeSauce;
             GetComponent<ObjectInfo>().Properties.Remove(ObjectProperty.Container);
             isInstalled = true;
 
-            FacuetWater.SetActive(false);
             GameManager.instance.FinishTask();
         }
     }

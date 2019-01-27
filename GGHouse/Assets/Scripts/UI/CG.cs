@@ -81,6 +81,7 @@ public class CG : MonoBehaviour
         {
             if (first)
             {
+                cgs[0].parent.localScale = enable;
                 cgs[0].localScale = enable;
                 cg_toshow = 1;
                 first = false;

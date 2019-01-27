@@ -14,7 +14,7 @@ public class load_scene : MonoBehaviour
     public bool exit = false;
     public bool restart = false;
     private RawImage rawImage;
-    private int this_level;
+    public int this_level;
 
     void Awake()
     {
@@ -62,10 +62,11 @@ public class load_scene : MonoBehaviour
         {
             //restart
             if (restart) {
+                Debug.Log("restart "+ this_level);
                 SceneManager.LoadScene(this_level);
             }
             // final scene
-            if (SceneManager.sceneCountInBuildSettings -1 == this_level || exit)
+            else if (SceneManager.sceneCountInBuildSettings -1 == this_level || exit)
             {
                 Application.Quit();
             }

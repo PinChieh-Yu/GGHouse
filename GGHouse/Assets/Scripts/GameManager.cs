@@ -26,15 +26,17 @@ public class GameManager : Singleton<GameManager>
         junior = GameObject.Find("Junior");
         senior = GameObject.Find("Senior");
         audio = GetComponent<AudioSource>();
-        with_letter = GameObject.Find("Canvas").transform.Find("CG_with_letter").GetComponent<CG>();
-        without_letter = GameObject.Find("Canvas").transform.Find("CG_without_letter").GetComponent<CG>();
-        with_letter.enabled = false;
-        without_letter.enabled = false;
+        
         objectList = FindObjectsOfType<ObjectInfo>();
         for (int i = 0; i < objectList.Length; i++)
         {
             objectList[i].Id = i;
         }
+        with_letter = GameObject.Find("Canvas").transform.Find("CG_with_letter").GetComponent<CG>();
+        without_letter = GameObject.Find("Canvas").transform.Find("CG_without_letter").GetComponent<CG>();
+        with_letter.enabled = false;
+        with_letter.transform.localScale = new Vector3(0, 0, 0);
+        without_letter.enabled = false;
     }
 
     public Transform GetCharacterTransform(CharacterIdentity identity)
@@ -67,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     public void FinishTask()
     {
         winConditionCount++;
-        //audio.Play();
+        audio.Play();
         Debug.Log("Finish Tack, Current Count:" + winConditionCount.ToString());
         if(winConditionCount == totalWinCondition)
         {

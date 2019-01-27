@@ -18,8 +18,8 @@ public class Barrel : MonoBehaviour, ISwitch
         if (!isFinish)
         {
             animator.SetTrigger("Switch");
-            GameManager.instance.FinishTask();
             isFinish = true;
+            GameManager.instance.FinishTask();
         }
     }
 }

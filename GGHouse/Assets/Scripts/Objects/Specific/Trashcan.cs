@@ -37,6 +37,7 @@ public class Trashcan : MonoBehaviour, ISwitch
         if (trashCount == 5)
         {
             GameManager.instance.FinishTask();
+            GetComponent<ObjectInfo>().Properties.Remove(ObjectProperty.Container);
         }
     }
 }
