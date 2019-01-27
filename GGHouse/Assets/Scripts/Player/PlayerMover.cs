@@ -9,9 +9,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private Transform view;
-
     private BoxCollider2D viewCollider;
+    private SpriteRenderer renderer;
 
     private PlayerStatus status;
 
@@ -21,13 +20,14 @@ public class PlayerMover : MonoBehaviour
     private CollideObject collide;
     private Animator animator;
     private bool isLeft = true;
+    private int anim_direc;
 
     void Start()
     {
         collide = GetComponent<CollideObject>();
         viewCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
-        view = transform.GetChild(0);
         status = GetComponent<PlayerStatus>();
+        renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -38,6 +38,8 @@ public class PlayerMover : MonoBehaviour
             Move();
         }
         animator.SetBool("isMoving", isMoving);
+        animator.SetInteger("dir", anim_direc);
+        renderer.sortingOrder = Mathf.RoundToInt(transform.position.y * -10);
     }
 
     private bool CheckPlayerCanMove()
@@ -45,7 +47,7 @@ public class PlayerMover : MonoBehaviour
         return !status.IsAnchored && !(status.isHolding && !GameManager.instance.GetObjectInfo(status.holdingObjectId).GetComponent<Portable>().IsReadyToMove);
     }
 
-    void Move()
+    public void Move()
     {
         direction = Vector2.zero;
         isMoving = false;
@@ -53,11 +55,13 @@ public class PlayerMover : MonoBehaviour
         {
             isMoving = true;
             direction += Vector2.up;
+            //anim_direc = 0;//back
         }
         if (Input.GetKey(DownKey))
         {
             isMoving = true;
             direction += Vector2.down;
+            //anim_direc = 1;//front
         }
         if (Input.GetKey(LeftKey))
         {
@@ -68,6 +72,7 @@ public class PlayerMover : MonoBehaviour
                 isLeft = true;
             }
             direction += Vector2.left;
+            //anim_direc = 2;
         }
         if (Input.GetKey(RightKey))
         {
@@ -78,34 +83,38 @@ public class PlayerMover : MonoBehaviour
                 isLeft = false;
             }
             direction += Vector2.right;
+            //anim_direc = 2;
         }
+        direction.Normalize();
 
         if (isMoving)
         {
             collide.Move(direction * speed);
-            Rotate();
+            RotateView();
         }
     }
 
-    void Rotate()
+    private void RotateView()
     {
         if (direction.y > 0)
         {
             viewCollider.offset = new Vector2(0f, -1.8f);
             viewCollider.size = new Vector2(1.4f, 0.7f);
+            anim_direc = 0;
         }
 
         if (direction.x != 0)
         {
             viewCollider.offset = new Vector2(-1f, -2f);
             viewCollider.size = new Vector2(1.5f, 0.7f);
+            anim_direc = 2;
         }
 
         if (direction.y < 0)
         {
             viewCollider.offset = new Vector2(0f, -2.5f);
             viewCollider.size = new Vector2(1.4f, 0.7f);
+            anim_direc = 1;
         }
-        //view.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, direction));
     }
 }

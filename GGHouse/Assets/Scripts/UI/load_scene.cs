@@ -74,11 +74,6 @@ public class load_scene : MonoBehaviour
             {
                 SceneManager.LoadScene(this_level + 1);
             }
-            
-            
-
         }
     }
-
- 
 }

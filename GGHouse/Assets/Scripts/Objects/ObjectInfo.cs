@@ -11,6 +11,19 @@ public class ObjectInfo : MonoBehaviour
     public Transform Transform;
     public List<ObjectProperty> Properties;
 
+    private SpriteRenderer renderer;
+    public int LayerNumber
+    {
+        get
+        {
+            return renderer.sortingOrder;
+        }
+        set
+        {
+            renderer.sortingOrder = value;
+        }
+    }
+
     void Awake()
     {
         Transform = transform;
@@ -19,6 +32,7 @@ public class ObjectInfo : MonoBehaviour
 
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
         SetHintActive(false);
     }
 

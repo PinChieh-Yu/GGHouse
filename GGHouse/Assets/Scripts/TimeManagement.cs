@@ -11,6 +11,7 @@ public class TimeManagement : MonoBehaviour
     public Slider Slider_Time;
     public Image Image_Color;
     public GameObject GameOverImage;
+    public bool pause;
 
     public Animation anim;
 
@@ -21,17 +22,22 @@ public class TimeManagement : MonoBehaviour
     {
         Slider_Time.maxValue = Time_Level1;
         anim = TimeCountDown.GetComponent<Animation>();
+
     }
 
     void Update()
     {
+        
         if(Time_Level1 > 0)
         {
-            Time_Level1 -= Time.deltaTime;
+            if (!pause)
+            {
+                Time_Level1 -= Time.deltaTime;
+            }
+            
         }
         else
         {
-            Debug.Log("Game Over!");
             GameOverImage.SetActive(true);
             //anim.Stop("Text_Flashing");
         }

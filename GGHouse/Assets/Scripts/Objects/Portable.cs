@@ -7,6 +7,7 @@ public class Portable : MonoBehaviour
 {
     private ObjectInfo objectInfo;
     private Anchor anchor;
+    private CharacterIdentity following;
 
     [SerializeField]
     private CharacterRequest requiredCharacters;
@@ -30,10 +31,10 @@ public class Portable : MonoBehaviour
     {
         if (IsFulfillRequest()) return;
         preparedPlayers.Add(identity);
-        Debug.Log(objectInfo.Id.ToString() + "'s prepared:" + IsFulfillRequest().ToString());
+        Debug.Log(objectInfo.name + "'s prepared:" + IsFulfillRequest().ToString());
         if (preparedPlayers.Count == 1)
         {
-            anchor.SetAnchor(transform);
+            anchor.SetAnchor(GameManager.instance.GetCharacterTransform(identity));
         }
         else if (preparedPlayers.Count > 1)
         {

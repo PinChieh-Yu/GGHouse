@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,40 +7,50 @@ using UnityEngine;
 public class Container : MonoBehaviour
 {
     public List<ObjectName> requestObjects;
+    public bool ShowWhenContain;
 
-    private List<int> containingObjects;
+    [HideInInspector]
+    public List<bool> requestFulFill;
+
+    public event Action<ObjectInfo> OnPutIn;
 
     void Awake()
     {
-        containingObjects = new List<int>();
+        requestFulFill = new List<bool>();
+    }
+
+    void Start()
+    {
+        for (int i = 0; i < requestObjects.Count; i++)
+        {
+            requestFulFill.Add(false);
+        }
     }
 
     public bool PutIn(int objId)
     {
-        if (!containingObjects.Contains(objId) && objId != GetComponent<ObjectInfo>().Id)
+        ObjectInfo objInfo = GameManager.instance.GetObjectInfo(objId);
+        Debug.Log("Try to putin "+ objInfo.name);
+        for (int id = 0; id < requestObjects.Count; id++)
         {
-            Debug.Log(name + " Contain " + GameManager.instance.GetObjectInfo(objId).name);
-            containingObjects.Add(objId);
-            GameManager.instance.GetObjectInfo(objId).IsInteractable = false;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+            if (requestObjects[id] == objInfo.Name && !requestFulFill[id])
+            {
+                Debug.Log(name + " Contain " + objInfo.Name.ToString());
+                requestFulFill[id] = true;
 
-    public int TakeOut()
-    {
-        if (containingObjects.Count > 0)
-        {
-            int tmp = containingObjects[0];
-            containingObjects.RemoveAt(0);
-            return tmp;
+                if (ShowWhenContain)
+                {
+                    objInfo.LayerNumber = GetComponent<ObjectInfo>().LayerNumber + 1;
+                }
+                else
+                {
+                    objInfo.LayerNumber = GetComponent<ObjectInfo>().LayerNumber - 1;
+                }
+
+                OnPutIn?.Invoke(objInfo);
+                return true;
+            }
         }
-        else
-        {
-            return -1;
-        }
+        return false;
     }
 }

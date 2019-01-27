@@ -2,8 +2,18 @@
 {
     Bed,
     Pillow,
+    Sheet,
     Table,
-    Closet
+    Closet,
+    TShirt,
+    Skirt,
+    Pants,
+    Fridge,
+    Trash,
+    Barrel,
+    Window,
+    Trashcan,
+    Faucet
 }
 
 public enum ObjectProperty

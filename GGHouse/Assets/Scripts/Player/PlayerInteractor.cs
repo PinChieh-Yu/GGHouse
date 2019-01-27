@@ -60,18 +60,6 @@ public class PlayerInteractor : MonoBehaviour
                 ObjectInfo info = GameManager.instance.GetObjectInfo(objId);
                 Debug.Log(info.Name + ":" + info.IsInteractable.ToString());
                 if (!info.IsInteractable) continue;
-                if (info.Properties.Contains(ObjectProperty.Container))
-                {
-                    int containObjId = info.GetComponent<Container>().TakeOut();
-                    if (containObjId != -1)
-                    {
-                        GameManager.instance.GetObjectInfo(containObjId).GetComponent<Portable>().PickUp(identity, transform);
-                        GameManager.instance.GetObjectInfo(containObjId).IsInteractable = false;
-                        status.HoldObject(containObjId);
-                        if (detectedObjectList.Contains(containObjId)) detectedObjectList.Remove(containObjId);
-                        return;
-                    }
-                }
                 if (info.Properties.Contains(ObjectProperty.Switch))
                 {
                     info.GetComponent<ISwitch>().Switch();
@@ -92,10 +80,11 @@ public class PlayerInteractor : MonoBehaviour
                 ObjectInfo info = GameManager.instance.GetObjectInfo(objId);
                 if (info.Properties.Contains(ObjectProperty.Container))
                 {
+                    Debug.Log("Container meet " + GameManager.instance.GetObjectInfo(status.holdingObjectId));
                     if (info.GetComponent<Container>().PutIn(status.holdingObjectId))
                     {
-                        GameManager.instance.GetObjectInfo(status.holdingObjectId).GetComponent<Portable>().PutDown(identity);
                         GameManager.instance.GetObjectInfo(status.holdingObjectId).IsInteractable = false;
+                        GameManager.instance.GetObjectInfo(status.holdingObjectId).gameObject.SetActive(false);
                         status.ReleaseObject();
                         return;
                     }

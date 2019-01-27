@@ -30,14 +30,12 @@ public class PlayerStatus : MonoBehaviour
         isHolding = true;
         holdingObjectId = objId;
         collide.ignoreObjectId = objId;
-        //Debug.Log("Hold OBJ:" + objId.ToString());
     }
 
     public void ReleaseObject()
     {
         isHolding = false;
         collide.ignoreObjectId = -1;
-        //Debug.Log("Release OBJ:" + holdingObjectId.ToString());
     }
 
     public void SetAnchor(Transform transform)
