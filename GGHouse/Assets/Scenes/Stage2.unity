@@ -461,6 +461,21 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.110000014
       objectReference: {fileID: 0}
+    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
+        type: 3}
+      propertyPath: InteractionKey
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
+        type: 3}
+      propertyPath: InteractionKey
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
+        type: 3}
+      propertyPath: identity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1005466329023144789, guid: 8ed22678c44b01646be634bb7efa37be,
         type: 3}
       propertyPath: m_Offset.x
@@ -480,21 +495,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 1.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
-        type: 3}
-      propertyPath: InteractionKey
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
-        type: 3}
-      propertyPath: InteractionKey
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
-        type: 3}
-      propertyPath: identity
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1982544252691551156, guid: 8ed22678c44b01646be634bb7efa37be,
         type: 3}
@@ -1488,6 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 1
+  next_scene: 0
   timer: {fileID: 0}
   bgm: {fileID: 0}
   cg_bgm: {fileID: 0}
@@ -2641,6 +2642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
+  next_scene: 1
   timer: {fileID: 0}
   bgm: {fileID: 0}
   cg_bgm: {fileID: 0}
@@ -3929,6 +3931,16 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.13
       objectReference: {fileID: 0}
+    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
+        type: 3}
+      propertyPath: InteractionKey
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
+        type: 3}
+      propertyPath: InteractionKey
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 1005466329023144789, guid: 8ed22678c44b01646be634bb7efa37be,
         type: 3}
       propertyPath: m_Offset.x
@@ -3948,16 +3960,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
-        type: 3}
-      propertyPath: InteractionKey
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005466329023144788, guid: 8ed22678c44b01646be634bb7efa37be,
-        type: 3}
-      propertyPath: InteractionKey
-      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1982544252691551156, guid: 8ed22678c44b01646be634bb7efa37be,
         type: 3}
@@ -7353,6 +7355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
+  next_scene: 1
   timer: {fileID: 0}
   bgm: {fileID: 0}
   cg_bgm: {fileID: 0}

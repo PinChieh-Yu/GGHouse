@@ -5,7 +5,7 @@ using UnityEngine;
 public class CG : MonoBehaviour
 {
     public bool start = false;
-    private bool next_scene;
+    public bool next_scene;
 
     private int cg_num;
     private int cg_toshow;
@@ -51,7 +51,7 @@ public class CG : MonoBehaviour
     {
        
         GameObject canvas = GameObject.Find("Canvas");
-        next_scene = !start;
+        //next_scene = !start;
         if (next_scene)
         {
             load = canvas.transform.Find("RawImage").GetComponent<load_scene>();
